@@ -1,0 +1,37 @@
+:root {
+  /* Font */
+  --font-size-base: 16px; /* Define a base font size (default: 16px) */
+  --font-size-small: 0.875rem; /* 14px */
+  --font-size-medium: 1rem; /* 16px */
+  --font-size-large: 1.25rem; /* 20px */
+  --text-color: black;
+
+  /* Borders */
+  --border-radius-large: 8px;
+  --border-radius-small: 4px;
+
+  /* Spacings */
+  --spacing-unit: 1rem; /* Define a base spacing unit using rem */
+  --spacing-small: 0.5rem; /* 8px */
+  --spacing-medium: 1rem; /* 16px */
+  --spacing-large: 2rem; /* 32px */
+}
+
+body {
+  background-color: dimgray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  color: var(--text-color);
+}
+
+h1 {
+  font-size: 2em;
+}
+
+aside {
+  flex-grow: 1;
+  border: 1px solid #ccc; /* Example border */
+  border-radius: var(--border-radius-small);
+}
