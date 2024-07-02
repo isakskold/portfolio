@@ -4,7 +4,7 @@
   --font-size-small: 0.875rem; /* 14px */
   --font-size-medium: 1rem; /* 16px */
   --font-size-large: 1.25rem; /* 20px */
-  --text-color: black;
+  --text-color: rgb(255, 255, 255);
 
   /* Borders */
   --border-radius-large: 8px;
@@ -18,20 +18,21 @@
 }
 
 body {
-  background-color: dimgray;
   display: flex;
   justify-content: center;
-  align-items: center;
+  background-color: rgb(9, 27, 59);
   margin: 0;
   color: var(--text-color);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
 }
 
-h1 {
-  font-size: 2em;
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-aside {
-  flex-grow: 1;
-  border: 1px solid #ccc; /* Example border */
-  border-radius: var(--border-radius-small);
+h2 {
+  margin: 0;
 }

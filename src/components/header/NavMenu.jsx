@@ -1,7 +1,13 @@
 import React from "react";
 
 const NavMenu = () => {
-  return <div></div>;
+  return (
+    <ul>
+      <li>Contact</li>
+      <li>Skills</li>
+      <li>Projects</li>
+    </ul>
+  );
 };
 
 export default NavMenu;
