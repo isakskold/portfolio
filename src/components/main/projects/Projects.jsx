@@ -14,7 +14,7 @@ const getLoremIpsumWords = (wordCount) => {
   return loremIpsumText.split(" ").slice(0, wordCount).join(" ") + ".";
 };
 
-const Introduction = () => {
+const Projects = () => {
   return (
     <>
       <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
@@ -24,4 +24,4 @@ const Introduction = () => {
   );
 };
 
-export default Introduction;
+export default Projects;
