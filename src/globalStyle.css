@@ -4,7 +4,7 @@
   --font-size-small: 0.875rem; /* 14px */
   --font-size-medium: 1rem; /* 16px */
   --font-size-large: 1.25rem; /* 20px */
-  --text-color: rgb(255, 255, 255);
+  --text-color: rgba(226, 232, 240, 0.85);
 
   /* Borders */
   --border-radius-large: 8px;
@@ -12,17 +12,32 @@
 
   /* Spacings */
   --spacing-unit: 1rem; /* Define a base spacing unit using rem */
-  --spacing-small: 0.5rem; /* 8px */
-  --spacing-medium: 1rem; /* 16px */
-  --spacing-large: 2rem; /* 32px */
+  --spacing-xs: 0.5rem;
+  --spacing-small: 1.5rem;
+  --spacing-medium: 3.5rem;
+  --spacing-large: 7rem;
+
+  /* Colors */
+  --primary-color: rgb(9, 17, 35); /* Background color */
+
+  /* Accent colors */
+  --bright-blue: rgba(30, 144, 255, 0.2); /* Bright blue */
+  --orange: rgb(255, 153, 0); /* Orange */
+  --turquoise: rgba(0, 191, 166, 0.45); /* Turquoise */
+  --tomato-red: rgb(255, 99, 71); /* Tomato red */
+
+  /* Box Shadow */
+  --box-shadow: 0 0 40px var(--turquoise);
 }
 
 body {
+  height: 100vh;
   display: flex;
   justify-content: center;
-  background-color: rgb(9, 27, 59);
+  background-color: var(--primary-color);
   margin: 0;
   color: var(--text-color);
+  text-shadow: var(--text-shadow);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
@@ -35,4 +50,10 @@ ul {
 
 h2 {
   margin: 0;
+}
+
+p {
+  font-size: var(--font-size-base);
+  margin: 0;
+  line-height: var(--spacing-small);
 }

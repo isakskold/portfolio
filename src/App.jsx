@@ -1,12 +1,11 @@
 import React from "react";
-
 import NavMenu from "./components/header/NavMenu";
 import styled from "styled-components";
 import "./globalStyle.css";
-
-import LinkedinFeed from "./components/header/LinkedinFeed";
 import Heading from "./components/header/Heading";
 import Section from "./components/main/Section";
+import Introduction from "./components/main/introduction/Introduction";
+import Contact from "./components/header/contact/Contact";
 
 const Container = styled.div`
   display: flex;
@@ -15,16 +14,14 @@ const Container = styled.div`
   box-sizing: border-box;
   width: 100vw;
   max-width: 1300px;
-  gap: var(--spacing-large);
+  min-height: 100%;
 `;
 
 const Header = styled.header`
   display: flex;
   flex-direction: column;
   width: 50%;
-  align-items: baseline;
   padding: 6rem 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   /* border: 2px solid #ccc;
   border-radius: var(--border-radius-small); */
   position: sticky;
@@ -37,13 +34,11 @@ const Header = styled.header`
 const Main = styled.main`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; /* Adjust alignment to start */
+  align-items: stretch; /* Ensure children stretch to full width */
+  min-height: 100vh;
   width: 50%;
   padding: 6rem 0;
-  gap: var(--spacing-large);
-  /* border: 2px solid #ccc;
-  border-radius: var(--border-radius-small); */
-
   box-sizing: border-box;
 `;
 
@@ -53,12 +48,14 @@ const App = () => {
       <Header>
         <Heading></Heading>
         <NavMenu></NavMenu>
-        <LinkedinFeed></LinkedinFeed>
+        <Contact> </Contact>
       </Header>
 
       <Main>
-        <Section title="Introduction"></Section>
-        <Section title="Contact"> </Section>
+        <Section title="Introduction">
+          <Introduction />
+        </Section>
+
         <Section title="Skills"> </Section>
         <Section title="Projects"> </Section>
       </Main>
