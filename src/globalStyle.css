@@ -24,10 +24,14 @@
   --bright-blue: rgba(30, 144, 255, 0.2); /* Bright blue */
   --orange: rgb(255, 153, 0); /* Orange */
   --turquoise: rgba(0, 191, 166, 0.45); /* Turquoise */
+  --turquoise-bright: rgba(0, 191, 166, 0.7); /* Turquoise */
+  --turquoise-semi-bright: rgba(0, 191, 166, 0.55); /* Turquoise */
   --tomato-red: rgb(255, 99, 71); /* Tomato red */
 
   /* Box Shadow */
   --box-shadow: 0 0 40px var(--turquoise);
+  --box-shadow-hover: 0 0 50px var(--turquoise-bright);
+  --box-shadow-expanded: 0 0 50px var(--turquoise-semi-bright);
 }
 
 body {
