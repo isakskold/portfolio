@@ -20,6 +20,9 @@ const Introduction = () => {
       <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
       <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
       <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
+      <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
+      <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
+      <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
     </>
   );
 };

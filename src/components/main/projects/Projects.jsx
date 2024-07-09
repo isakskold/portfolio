@@ -18,8 +18,6 @@ const Projects = () => {
   return (
     <>
       <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
-      <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
-      <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
     </>
   );
 };

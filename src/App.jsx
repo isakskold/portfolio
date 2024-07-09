@@ -8,6 +8,7 @@ import Introduction from "./components/main/introduction/Introduction";
 import Contact from "./components/header/contact/Contact";
 import Skills from "./components/main/skills/Skils";
 import Projects from "./components/main/projects/Projects";
+import ProfilePicture from "./components/header/ProfilePicture";
 
 // Breakpoint for desktop vs mobile layout
 export const breakpoint = "923px";
@@ -76,6 +77,7 @@ const App = () => {
     <Container>
       <Header>
         <Heading></Heading>
+        <ProfilePicture />
         <NavMenu></NavMenu>
         {!isMobile && <Contact />}
       </Header>
