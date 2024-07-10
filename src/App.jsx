@@ -11,7 +11,7 @@ import Projects from "./components/main/projects/Projects";
 import ProfilePicture from "./components/header/ProfilePicture";
 
 // Breakpoint for desktop vs mobile layout
-export const breakpoint = "923px";
+export const breakpoint = "1200px";
 // Function to parse the breakpoint value
 const parseBreakpoint = (breakpoint) => parseInt(breakpoint, 10);
 
@@ -41,7 +41,7 @@ const Header = styled.header`
   top: 0; /* Stick to the top */
   max-height: 100vh; /* Full viewport height */
   box-sizing: border-box;
-  overflow-y: hidden; /* Enable vertical scrolling */
+  /* Enable vertical scrolling */
   @media (max-width: ${breakpoint}) {
     position: static;
     width: 100%;
