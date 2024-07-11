@@ -23,6 +23,7 @@ const SectionContainer = styled.section`
   &:hover {
     box-shadow: var(--box-shadow-hover);
   }
+
   transition: box-shadow 0.2s ease-in-out;
 `;
 
@@ -73,10 +74,12 @@ const SectionContentWrapper = styled.div`
 
 const SectionContent = styled.div`
   overflow: hidden;
-
   max-height: ${(props) =>
     props.$expanded ? `${pxToRem(props.$maxHeight)}` : pxToRem(200)};
-  transition: max-height 0.6s ease-in-out;
+  transition: max-height 0.6s ease-in-out, font-size 0.6s ease-in-out; /* Transition for max-height and font-size */
+
+  font-size: ${(props) =>
+    props.$expanded ? "var(--font-size-large)" : "inherit"};
 `;
 
 const Section = ({ title, children }) => {

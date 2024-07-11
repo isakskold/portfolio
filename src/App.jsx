@@ -34,7 +34,8 @@ const Header = styled.header`
   display: flex;
   flex-direction: column;
   width: 50%;
-  padding: 6rem 0;
+  padding-bottom: 6rem;
+  padding-top: 10rem;
   /* border: 2px solid #ccc;
   border-radius: var(--border-radius-small); */
   position: sticky;
@@ -53,7 +54,8 @@ const Main = styled.main`
   flex-direction: column;
   justify-content: flex-start;
   width: 50%;
-  padding: 6rem 0;
+  padding-bottom: 6rem;
+  padding-top: 10rem;
   box-sizing: border-box;
   @media (max-width: ${breakpoint}) {
     width: 100%;

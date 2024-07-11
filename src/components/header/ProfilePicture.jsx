@@ -41,7 +41,7 @@ const ImageContainer = styled.div`
   overflow: hidden; /* Ensure the pulsating box shadow is visible */
   border-radius: 30px; /* Make the container a circle */
   padding: 5px; /* Space for the gradient border */
-  margin: var(--spacing-medium) 0; /* Center the container horizontally */
+  margin-bottom: var(--spacing-medium); /* Center the container horizontally */
   min-height: 75px; /* Set minimum height */
   min-width: 75px; /* Set minimum width */
   z-index: 10; /* Ensure it is on top of other elements */
