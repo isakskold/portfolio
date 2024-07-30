@@ -12,7 +12,8 @@ const SectionContainer = styled.section`
   box-shadow: ${(props) =>
     props.$expanded ? "var(--box-shadow-expanded)" : "var(--box-shadow)"};
 
-  border-radius: 50px;
+  border-radius: ${(props) => (props.$expanded ? "30px" : "15px")}; //15px 30px
+
   padding: var(--spacing-small);
   overflow: hidden;
   &:not(:last-child) {
@@ -24,7 +25,7 @@ const SectionContainer = styled.section`
     box-shadow: var(--box-shadow-hover);
   }
 
-  transition: box-shadow 0.2s ease-in-out;
+  transition: border-radius 0.6s ease-in-out, box-shadow 0.2s ease-in-out;
 `;
 
 const SectionTitle = styled.h2`
@@ -76,10 +77,7 @@ const SectionContent = styled.div`
   overflow: hidden;
   max-height: ${(props) =>
     props.$expanded ? `${pxToRem(props.$maxHeight)}` : pxToRem(200)};
-  transition: max-height 0.6s ease-in-out, font-size 0.6s ease-in-out; /* Transition for max-height and font-size */
-
-  font-size: ${(props) =>
-    props.$expanded ? "var(--font-size-large)" : "inherit"};
+  transition: max-height 0.6s ease-in-out;
 `;
 
 const Section = ({ title, children }) => {

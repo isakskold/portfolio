@@ -39,7 +39,7 @@ const ImageContainer = styled.div`
   height: 15rem; /* Set height and width to create a square */
   width: 15rem; /* Set height and width to create a square */
   overflow: hidden; /* Ensure the pulsating box shadow is visible */
-  border-radius: 30px; /* Make the container a circle */
+  border-radius: 15px; /* Make the container a circle */
   padding: 5px; /* Space for the gradient border */
   margin-bottom: var(--spacing-medium); /* Center the container horizontally */
   min-height: 75px; /* Set minimum height */
@@ -58,7 +58,7 @@ const ImageContainer = styled.div`
     left: 0;
     right: 0;
     bottom: 0;
-    border-radius: 30px; /* Match the container's border radius */
+    border-radius: 15px; /* Match the container's border radius */
     background: linear-gradient(
       45deg,
       var(--bright-blue),
@@ -81,7 +81,7 @@ const ImageContainer = styled.div`
     background: var(
       --primary-color
     ); /* Background color for the inner container */
-    border-radius: 25px; /* Inner border radius slightly smaller */
+    border-radius: 15px; /* Inner border radius slightly smaller */
     z-index: -2; /* Ensure it is behind the pseudo-element */
   }
 `;
@@ -90,7 +90,7 @@ const Image = styled.img`
   width: 100%; /* Ensure the image fills the entire container */
   height: auto; /* Maintain aspect ratio */
   object-fit: cover; /* Cover the entire container */
-  border-radius: 25px; /* Ensure the image itself is also a circle */
+  border-radius: 15px; /* Ensure the image itself is also a circle */
   position: relative;
   z-index: 1; /* Ensure the image is above the inner background */
 `;
