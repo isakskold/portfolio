@@ -25,8 +25,12 @@ const Technologies = styled.ul`
   gap: var(--spacing-xs);
 `;
 
-const ThumbnailsContainer = styled.div`
+const ThumbnailsWrapper = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  width: calc(100% + var(--spacing-small) * 2);
+  margin-left: calc(-1 * var(--spacing-small));
 `;
 
 const Thumbnails = styled.div`
@@ -34,15 +38,21 @@ const Thumbnails = styled.div`
   gap: var(--spacing-medium);
   overflow-x: scroll;
   white-space: nowrap;
-  scroll-behavior: smooth; /* Smooth scrolling effect */
+  scroll-behavior: smooth;
 
-  /* Hide scrollbar for WebKit browsers */
+  :first-child {
+    margin-left: var(--spacing-small);
+  }
+
+  :last-child {
+    margin-right: var(--spacing-small);
+  }
+
   &::-webkit-scrollbar {
     display: none;
   }
-  /* Hide scrollbar for other browsers */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 const Thumbnail = styled.img`
@@ -50,7 +60,6 @@ const Thumbnail = styled.img`
   height: 130px;
   object-fit: cover;
   cursor: pointer;
-  border: 1px solid #ddd;
   border-radius: 8px;
 `;
 
@@ -60,8 +69,12 @@ const ArrowButton = styled.button`
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
+  box-sizing: border-box;
+  height: 132px;
   border: none;
+  border-radius: var(--border-radius-large);
   padding: 0.5em;
+  font-size: 2rem;
   cursor: pointer;
   z-index: 1;
 
@@ -81,6 +94,7 @@ const RightArrowButton = styled(ArrowButton)`
 
 const ProjectCard = ({ title, images, link, description, technologies }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const thumbnailsWrapperRef = useRef(null);
   const thumbnailsRef = useRef(null);
 
   const handleClick = (e) => {
@@ -88,8 +102,8 @@ const ProjectCard = ({ title, images, link, description, technologies }) => {
   };
 
   const scrollThumbnails = (direction) => {
-    if (thumbnailsRef.current) {
-      const scrollAmount = thumbnailsRef.current.clientWidth;
+    if (thumbnailsWrapperRef.current && thumbnailsRef.current) {
+      const scrollAmount = thumbnailsWrapperRef.current.clientWidth * 0.7;
       thumbnailsRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -102,7 +116,7 @@ const ProjectCard = ({ title, images, link, description, technologies }) => {
       <h3>{title}</h3>
       <Description>{description}</Description>
 
-      <ThumbnailsContainer>
+      <ThumbnailsWrapper ref={thumbnailsWrapperRef}>
         <LeftArrowButton
           onClick={(e) => {
             handleClick(e);
@@ -132,7 +146,7 @@ const ProjectCard = ({ title, images, link, description, technologies }) => {
         >
           {">"}
         </RightArrowButton>
-      </ThumbnailsContainer>
+      </ThumbnailsWrapper>
 
       {technologies && (
         <Technologies>
