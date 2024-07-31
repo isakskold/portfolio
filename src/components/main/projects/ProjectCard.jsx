@@ -26,9 +26,23 @@ const Technologies = styled.ul`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-grow: 1;
   align-items: center;
+  gap: var(--spacing-xs);
+
+  @media (max-width: 560px) {
+    margin-top: var(--spacing-small);
+    justify-content: space-evenly;
+    flex-direction: row;
+  }
+
+  @media (max-width: 353px) {
+    margin-top: var(--spacing-small);
+    margin-bottom: var(--spacing-small);
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
 const Thumbnails = styled.div`
@@ -54,7 +68,13 @@ const Thumbnails = styled.div`
   }
 
   @media (max-width: 560px) {
-    max-width: 102px;
+    max-width: 100%;
+    justify-content: flex-start;
+  }
+
+  @media (max-width: 353px) {
+    max-width: 74px;
+    justify-content: space-around;
   }
 `;
 
@@ -65,6 +85,12 @@ const Thumbnail = styled.img`
   cursor: pointer;
   border: 1px solid #ddd;
   border-radius: 8px;
+
+  @media (max-width: 432px) {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 1;
+  }
 `;
 
 const ProjectCard = ({ title, images, link, description, technologies }) => {
