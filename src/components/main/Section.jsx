@@ -9,6 +9,7 @@ const SectionContainer = styled.section`
   display: flex;
   flex-direction: column;
   background-color: rgba(250, 250, 250, 0.06);
+  border: 1px solid rgba(250, 250, 250, 0.1);
   box-shadow: ${(props) =>
     props.$expanded ? "var(--box-shadow-expanded)" : "var(--box-shadow)"};
 
@@ -29,7 +30,6 @@ const SectionContainer = styled.section`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: var(--font-size-large);
   padding: var(--spacing-xs) 0;
   margin-bottom: ${(props) => (props.$expanded ? "var(--spacing-small)" : "0")};
   transition: margin-bottom 0.6s ease-in-out;

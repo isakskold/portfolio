@@ -25,8 +25,9 @@
   --orange: rgb(255, 153, 0); /* Orange */
   --turquoise: rgba(0, 191, 166, 0.45); /* Turquoise */
   --turquoise-bright: rgba(0, 191, 166, 0.7); /* Turquoise */
+  --turquoise-bright-bgc: rgba(0, 191, 166, 0.03); /* Turquoise */
   --turquoise-semi-bright: rgba(0, 191, 166, 0.55); /* Turquoise */
-  --tomato-red: rgb(255, 99, 71); /* Tomato red */
+  --tomato-red: rgba(255, 99, 71, 0.15); /* Tomato red */
 
   /* Box Shadow */
   --box-shadow: 0 0 40px var(--turquoise);
@@ -54,7 +55,13 @@ ul {
 }
 
 h2 {
+  font-size: 1.7rem;
   margin: 0;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.3rem;
 }
 
 p {
