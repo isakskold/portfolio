@@ -1,145 +1,153 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import ImageModal from "./ImageModal";
 
 const Article = styled.article`
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   gap: var(--spacing-small);
   background-color: var(--turquoise-bright-bgc);
   border-radius: var(--border-radius-large);
   padding: var(--spacing-small);
   border: 1px solid rgba(250, 250, 250, 0.1);
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 const Description = styled.p`
   white-space: pre-wrap;
 `;
 
-const ThumbnailsAndTechnologiesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
 const Technologies = styled.ul`
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
   justify-content: space-around;
-  flex-grow: 1;
   align-items: center;
   gap: var(--spacing-xs);
+`;
 
-  @media (max-width: 560px) {
-    margin-top: var(--spacing-small);
-    justify-content: space-evenly;
-    flex-direction: row;
-  }
-
-  @media (max-width: 353px) {
-    margin-top: var(--spacing-small);
-    margin-bottom: var(--spacing-small);
-    flex-direction: column;
-    justify-content: space-between;
-  }
+const ThumbnailsContainer = styled.div`
+  position: relative;
 `;
 
 const Thumbnails = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-small);
-  justify-content: space-between;
-  max-width: 59%;
+  gap: var(--spacing-medium);
+  overflow-x: scroll;
+  white-space: nowrap;
+  scroll-behavior: smooth; /* Smooth scrolling effect */
 
-  @media (max-width: 922px) {
-    max-width: 75%;
-    flex-grow: 1;
+  /* Hide scrollbar for WebKit browsers */
+  &::-webkit-scrollbar {
+    display: none;
   }
-
-  @media (max-width: 753px) {
-    max-width: 60%;
-    flex-grow: 1;
-  }
-
-  @media (max-width: 641px) {
-    max-width: 70%;
-    flex-grow: 1;
-  }
-
-  @media (max-width: 560px) {
-    max-width: 100%;
-    justify-content: flex-start;
-  }
-
-  @media (max-width: 353px) {
-    max-width: 74px;
-    justify-content: space-around;
-  }
+  /* Hide scrollbar for other browsers */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 `;
 
 const Thumbnail = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   object-fit: cover;
   cursor: pointer;
   border: 1px solid #ddd;
   border-radius: 8px;
+`;
 
-  @media (max-width: 432px) {
-    width: 70px;
-    height: 70px;
-    flex-shrink: 1;
+const ArrowButton = styled.button`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+  z-index: 1;
+
+  &:disabled {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
   }
+`;
+
+const LeftArrowButton = styled(ArrowButton)`
+  left: 0;
+`;
+
+const RightArrowButton = styled(ArrowButton)`
+  right: 0;
 `;
 
 const ProjectCard = ({ title, images, link, description, technologies }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const thumbnailsRef = useRef(null);
 
-  const handleThumbnailClick = (e, image) => {
-    e.stopPropagation(); // Prevents click from bubbling up to parent elements
-    setSelectedImage(image);
+  const handleClick = (e) => {
+    e.stopPropagation();
   };
 
-  const handleCloseModal = (e) => {
-    e.stopPropagation(); // Prevents click from bubbling up to parent elements
-    setSelectedImage(null);
-  };
-
-  const handleLinkClick = (e) => {
-    e.stopPropagation(); // Prevents click from bubbling up to parent elements
+  const scrollThumbnails = (direction) => {
+    if (thumbnailsRef.current) {
+      const scrollAmount = thumbnailsRef.current.clientWidth;
+      thumbnailsRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
   };
 
   return (
     <Article>
       <h3>{title}</h3>
       <Description>{description}</Description>
-      <ThumbnailsAndTechnologiesWrapper>
-        <Thumbnails>
+
+      <ThumbnailsContainer>
+        <LeftArrowButton
+          onClick={(e) => {
+            handleClick(e);
+            scrollThumbnails("left");
+          }}
+        >
+          {"<"}
+        </LeftArrowButton>
+        <Thumbnails ref={thumbnailsRef}>
           {images.map((image, index) => (
             <Thumbnail
               key={index}
               src={image}
               alt={`${title} ${index + 1}`}
-              onClick={(e) => handleThumbnailClick(e, image)}
+              onClick={(e) => {
+                handleClick(e);
+                setSelectedImage(image);
+              }}
             />
           ))}
         </Thumbnails>
+        <RightArrowButton
+          onClick={(e) => {
+            handleClick(e);
+            scrollThumbnails("right");
+          }}
+        >
+          {">"}
+        </RightArrowButton>
+      </ThumbnailsContainer>
 
-        {technologies && (
-          <Technologies>
-            {technologies.map((tech, index) => (
-              <li key={index}>{tech}</li>
-            ))}
-          </Technologies>
-        )}
-      </ThumbnailsAndTechnologiesWrapper>
+      {technologies && (
+        <Technologies>
+          {technologies.map((tech, index) => (
+            <li key={index}>{tech}</li>
+          ))}
+        </Technologies>
+      )}
+
       {link && (
         <a
           href={link}
           target="_blank"
           rel="noopener noreferrer"
-          onClick={handleLinkClick}
+          onClick={handleClick}
         >
           View Project
         </a>
@@ -148,7 +156,10 @@ const ProjectCard = ({ title, images, link, description, technologies }) => {
         <ImageModal
           src={selectedImage}
           alt={title}
-          onClose={handleCloseModal}
+          onClose={(e) => {
+            handleClick(e);
+            setSelectedImage(null);
+          }}
         />
       )}
     </Article>
