@@ -1,154 +1,145 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState, useRef, useEffect } from "react";
+import styled, { css } from "styled-components";
 import ImageModal from "./ImageModal";
 
 const Article = styled.article`
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   gap: var(--spacing-small);
   background-color: var(--turquoise-bright-bgc);
   border-radius: var(--border-radius-large);
   padding: var(--spacing-small);
   border: 1px solid rgba(250, 250, 250, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+  cursor: auto;
+
+  /* Prevent click events from propagating */
+  &:click {
+    pointer-events: none;
+  }
 `;
 
 const Description = styled.p`
   white-space: pre-wrap;
 `;
 
-const ThumbnailsAndTechnologiesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
 const Technologies = styled.ul`
   display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
   justify-content: space-around;
-  flex-grow: 1;
   align-items: center;
   gap: var(--spacing-xs);
+`;
 
-  @media (max-width: 560px) {
-    margin-top: var(--spacing-small);
-    justify-content: space-evenly;
-    flex-direction: row;
-  }
-
-  @media (max-width: 353px) {
-    margin-top: var(--spacing-small);
-    margin-bottom: var(--spacing-small);
-    flex-direction: column;
-    justify-content: space-between;
-  }
+const ThumbnailsWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: calc(100% + var(--spacing-small) * 2);
+  margin-left: calc(-1 * var(--spacing-small));
 `;
 
 const Thumbnails = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-small);
-  justify-content: space-between;
-  max-width: 59%;
+  gap: var(--spacing-medium);
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
 
-  @media (max-width: 922px) {
-    max-width: 75%;
-    flex-grow: 1;
+  :first-child {
+    margin-left: var(--spacing-small);
   }
 
-  @media (max-width: 753px) {
-    max-width: 60%;
-    flex-grow: 1;
+  :last-child {
+    margin-right: var(--spacing-small);
   }
 
-  @media (max-width: 641px) {
-    max-width: 70%;
-    flex-grow: 1;
-  }
+  ${(props) =>
+    props.isFirefox &&
+    css`
+      scrollbar-width: thin;
+      scrollbar-color: #888 #f1f1f1;
+    `}
 
-  @media (max-width: 560px) {
-    max-width: 100%;
-    justify-content: flex-start;
-  }
+  ${(props) =>
+    !props.isFirefox &&
+    css`
+      &::-webkit-scrollbar {
+        height: 1.2rem;
+      }
 
-  @media (max-width: 353px) {
-    max-width: 74px;
-    justify-content: space-around;
-  }
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    `}
 `;
 
 const Thumbnail = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 130px;
+  height: 130px;
   object-fit: cover;
   cursor: pointer;
-  border: 1px solid #ddd;
   border-radius: 8px;
-
-  @media (max-width: 432px) {
-    width: 70px;
-    height: 70px;
-    flex-shrink: 1;
-  }
+  margin-bottom: var(--spacing-small);
 `;
 
 const ProjectCard = ({ title, images, link, description, technologies }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isFirefox, setIsFirefox] = useState(false);
+  const thumbnailsWrapperRef = useRef(null);
+  const thumbnailsRef = useRef(null);
 
-  const handleThumbnailClick = (e, image) => {
-    e.stopPropagation(); // Prevents click from bubbling up to parent elements
-    setSelectedImage(image);
-  };
-
-  const handleCloseModal = (e) => {
-    e.stopPropagation(); // Prevents click from bubbling up to parent elements
-    setSelectedImage(null);
-  };
-
-  const handleLinkClick = (e) => {
-    e.stopPropagation(); // Prevents click from bubbling up to parent elements
-  };
+  useEffect(() => {
+    setIsFirefox(typeof InstallTrigger !== "undefined");
+  }, []);
 
   return (
-    <Article>
+    <Article onClick={(e) => e.stopPropagation()}>
       <h3>{title}</h3>
       <Description>{description}</Description>
-      <ThumbnailsAndTechnologiesWrapper>
-        <Thumbnails>
+
+      <ThumbnailsWrapper ref={thumbnailsWrapperRef}>
+        <Thumbnails ref={thumbnailsRef} $isFirefox={isFirefox}>
           {images.map((image, index) => (
             <Thumbnail
               key={index}
               src={image}
               alt={`${title} ${index + 1}`}
-              onClick={(e) => handleThumbnailClick(e, image)}
+              onClick={() => setSelectedImage(image)}
             />
           ))}
         </Thumbnails>
+      </ThumbnailsWrapper>
 
-        {technologies && (
-          <Technologies>
-            {technologies.map((tech, index) => (
-              <li key={index}>{tech}</li>
-            ))}
-          </Technologies>
-        )}
-      </ThumbnailsAndTechnologiesWrapper>
+      {technologies && (
+        <Technologies>
+          {technologies.map((tech, index) => (
+            <li key={index}>{tech}</li>
+          ))}
+        </Technologies>
+      )}
+
       {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleLinkClick}
-        >
+        <a href={link} target="_blank" rel="noopener noreferrer">
           View Project
         </a>
       )}
+
       {selectedImage && (
         <ImageModal
           src={selectedImage}
           alt={title}
-          onClose={handleCloseModal}
+          onClose={() => setSelectedImage(null)}
         />
       )}
     </Article>
