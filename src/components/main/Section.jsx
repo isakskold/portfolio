@@ -78,6 +78,9 @@ const SectionContent = styled.div`
   max-height: ${(props) =>
     props.$expanded ? `${pxToRem(props.$maxHeight)}` : pxToRem(200)};
   transition: max-height 0.6s ease-in-out;
+
+  /* Disable pointer events for children when not expanded */
+  pointer-events: ${(props) => (props.$expanded ? "auto" : "none")};
 `;
 
 const Section = ({ title, children }) => {

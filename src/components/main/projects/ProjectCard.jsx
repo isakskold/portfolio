@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import styled from "styled-components";
+import React, { useState, useRef, useEffect } from "react";
+import styled, { css } from "styled-components";
 import ImageModal from "./ImageModal";
 
 const Article = styled.article`
@@ -12,6 +12,12 @@ const Article = styled.article`
   border: 1px solid rgba(250, 250, 250, 0.1);
   width: 100%;
   box-sizing: border-box;
+  cursor: auto;
+
+  /* Prevent click events from propagating */
+  &:click {
+    pointer-events: none;
+  }
 `;
 
 const Description = styled.p`
@@ -36,7 +42,7 @@ const ThumbnailsWrapper = styled.div`
 const Thumbnails = styled.div`
   display: flex;
   gap: var(--spacing-medium);
-  overflow-x: scroll;
+  overflow-x: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
 
@@ -48,11 +54,34 @@ const Thumbnails = styled.div`
     margin-right: var(--spacing-small);
   }
 
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  ${(props) =>
+    props.isFirefox &&
+    css`
+      scrollbar-width: thin;
+      scrollbar-color: #888 #f1f1f1;
+    `}
+
+  ${(props) =>
+    !props.isFirefox &&
+    css`
+      &::-webkit-scrollbar {
+        height: 1.2rem;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    `}
 `;
 
 const Thumbnail = styled.img`
@@ -61,91 +90,35 @@ const Thumbnail = styled.img`
   object-fit: cover;
   cursor: pointer;
   border-radius: 8px;
-`;
-
-const ArrowButton = styled.button`
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  box-sizing: border-box;
-  height: 132px;
-  border: none;
-  border-radius: var(--border-radius-large);
-  padding: 0.5em;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 1;
-
-  &:disabled {
-    background-color: rgba(0, 0, 0, 0.2);
-    cursor: not-allowed;
-  }
-`;
-
-const LeftArrowButton = styled(ArrowButton)`
-  left: 0;
-`;
-
-const RightArrowButton = styled(ArrowButton)`
-  right: 0;
+  margin-bottom: var(--spacing-small);
 `;
 
 const ProjectCard = ({ title, images, link, description, technologies }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [isFirefox, setIsFirefox] = useState(false);
   const thumbnailsWrapperRef = useRef(null);
   const thumbnailsRef = useRef(null);
 
-  const handleClick = (e) => {
-    e.stopPropagation();
-  };
-
-  const scrollThumbnails = (direction) => {
-    if (thumbnailsWrapperRef.current && thumbnailsRef.current) {
-      const scrollAmount = thumbnailsWrapperRef.current.clientWidth * 0.7;
-      thumbnailsRef.current.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
-      });
-    }
-  };
+  useEffect(() => {
+    setIsFirefox(typeof InstallTrigger !== "undefined");
+  }, []);
 
   return (
-    <Article>
+    <Article onClick={(e) => e.stopPropagation()}>
       <h3>{title}</h3>
       <Description>{description}</Description>
 
       <ThumbnailsWrapper ref={thumbnailsWrapperRef}>
-        <LeftArrowButton
-          onClick={(e) => {
-            handleClick(e);
-            scrollThumbnails("left");
-          }}
-        >
-          {"<"}
-        </LeftArrowButton>
-        <Thumbnails ref={thumbnailsRef}>
+        <Thumbnails ref={thumbnailsRef} $isFirefox={isFirefox}>
           {images.map((image, index) => (
             <Thumbnail
               key={index}
               src={image}
               alt={`${title} ${index + 1}`}
-              onClick={(e) => {
-                handleClick(e);
-                setSelectedImage(image);
-              }}
+              onClick={() => setSelectedImage(image)}
             />
           ))}
         </Thumbnails>
-        <RightArrowButton
-          onClick={(e) => {
-            handleClick(e);
-            scrollThumbnails("right");
-          }}
-        >
-          {">"}
-        </RightArrowButton>
       </ThumbnailsWrapper>
 
       {technologies && (
@@ -157,23 +130,16 @@ const ProjectCard = ({ title, images, link, description, technologies }) => {
       )}
 
       {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={handleClick}
-        >
+        <a href={link} target="_blank" rel="noopener noreferrer">
           View Project
         </a>
       )}
+
       {selectedImage && (
         <ImageModal
           src={selectedImage}
           alt={title}
-          onClose={(e) => {
-            handleClick(e);
-            setSelectedImage(null);
-          }}
+          onClose={() => setSelectedImage(null)}
         />
       )}
     </Article>
