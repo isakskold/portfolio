@@ -27,9 +27,10 @@ const Description = styled.p`
 
 const Technologies = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-small);
 `;
 
 const ThumbnailsWrapper = styled.div`

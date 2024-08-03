@@ -51,7 +51,6 @@ const SectionContentWrapper = styled.div`
   align-items: start;
   transition: grid-template-rows 0.6s ease-in-out;
   overflow: hidden;
-
   position: relative;
 
   &::after {
@@ -81,7 +80,7 @@ const SectionContent = styled.div`
   pointer-events: ${(props) => (props.$expanded ? "auto" : "none")};
 `;
 
-const Section = ({ title, children }) => {
+const Section = ({ title, children, allowOverflow }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [maxHeight, setMaxHeight] = useState(0);
   const contentRef = useRef(null);

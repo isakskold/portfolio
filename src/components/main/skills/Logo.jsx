@@ -9,9 +9,7 @@ const LogoWrapper = styled.div`
   width: 50px; // Adjust as needed
   height: 50px; // Adjust as needed
   border-radius: 50%;
-  overflow: hidden;
-  background-color: #fff; // Optional, to enhance visibility
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional, for visual depth
+  box-shadow: 0 0 8px 20px rgba(0, 0, 0, 0.2); /* Centered shadow */
 `;
 
 const LogoImage = styled.img`

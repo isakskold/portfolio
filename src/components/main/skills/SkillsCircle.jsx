@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import Logo from "./Logo";
 
 // Styled components
 const CircleContainer = styled.div`
@@ -11,13 +12,13 @@ const CircleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: var(--spacing-small);
 
   @media (max-width: 600px) {
     aspect-ratio: auto; /* Disable aspect ratio for small screens */
     max-height: 100%; /* Ensure the container doesn’t exceed viewport height */
-    flex-direction: column; /* Stack items vertically */
+    flex-wrap: wrap;
     align-items: flex-start;
+    border-radius: 0;
   }
 `;
 
@@ -29,7 +30,7 @@ const SkillItem = styled.div`
   @media (max-width: 600px) {
     position: static; /* Remove absolute positioning */
     transform: none; /* Remove transform */
-    margin-bottom: 10px; /* Add some space between items */
+    margin: var(--spacing-small);
   }
 `;
 
@@ -42,7 +43,12 @@ const SkillsCircle = ({ skills }) => {
   const updateDimensions = () => {
     if (containerRef.current) {
       const size = containerRef.current.offsetWidth; // assuming the container is a square
-      setDimensions({ radius: size / 2 - 10, center: size / 2 }); // 10px margin from the border
+      const logoSize = 50; // Logo size
+      const boxShadowSpread = 20; // Box shadow spread
+      setDimensions({
+        radius: size / 2 - logoSize / 2 - boxShadowSpread,
+        center: size / 2,
+      });
     }
   };
 
@@ -77,7 +83,7 @@ const SkillsCircle = ({ skills }) => {
     <CircleContainer ref={containerRef}>
       {skills.map((skill, index) => (
         <SkillItem key={index} ref={(el) => (skillRefs.current[index] = el)}>
-          {skill}
+          <Logo src={skill.src} name={skill.name} />
         </SkillItem>
       ))}
     </CircleContainer>
