@@ -1,26 +1,20 @@
 import React from "react";
 import styled from "styled-components";
+import SkillsCircle from "./SkillsCircle";
 
-const Paragraph = styled.p`
-  margin-bottom: var(--spacing-small);
+// Example usage of Section and SkillsCircle components
+const skills = ["HTML", "CSS", "JavaScript", "React", "Node.js", "Git"];
+
+const SkillsCircleWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `;
-
-// Predefined lorem ipsum text
-const loremIpsumText =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.";
-
-// Function to generate a specified number of words
-const getLoremIpsumWords = (wordCount) => {
-  return loremIpsumText.split(" ").slice(0, wordCount).join(" ") + ".";
-};
 
 const Skills = () => {
   return (
-    <>
-      <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
-      <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
-      <Paragraph> {getLoremIpsumWords(100)} </Paragraph>
-    </>
+    <SkillsCircleWrapper>
+      <SkillsCircle skills={skills} />
+    </SkillsCircleWrapper>
   );
 };
 

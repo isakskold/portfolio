@@ -13,7 +13,7 @@ const SectionContainer = styled.section`
   box-shadow: ${(props) =>
     props.$expanded ? "var(--box-shadow-expanded)" : "var(--box-shadow)"};
 
-  border-radius: ${(props) => (props.$expanded ? "30px" : "15px")}; //15px 30px
+  border-radius: ${(props) => (props.$expanded ? "30px" : "15px")};
 
   padding: var(--spacing-small);
   overflow: hidden;
@@ -75,8 +75,6 @@ const SectionContentWrapper = styled.div`
 
 const SectionContent = styled.div`
   overflow: hidden;
-  max-height: ${(props) =>
-    props.$expanded ? `${pxToRem(props.$maxHeight)}` : pxToRem(200)};
   transition: max-height 0.6s ease-in-out;
 
   /* Disable pointer events for children when not expanded */
@@ -89,14 +87,14 @@ const Section = ({ title, children }) => {
   const contentRef = useRef(null);
 
   useEffect(() => {
-    if (isExpanded) {
+    if (isExpanded && contentRef.current) {
       setMaxHeight(contentRef.current.scrollHeight);
     }
   }, [isExpanded]);
 
   useEffect(() => {
     const handleResize = () => {
-      if (isExpanded) {
+      if (isExpanded && contentRef.current) {
         setMaxHeight(contentRef.current.scrollHeight);
       }
     };
@@ -118,9 +116,11 @@ const Section = ({ title, children }) => {
       </SectionTitle>
       <SectionContentWrapper $expanded={isExpanded}>
         <SectionContent
-          $expanded={isExpanded}
-          $maxHeight={maxHeight}
+          style={{
+            maxHeight: isExpanded ? `${pxToRem(maxHeight)}` : pxToRem(200),
+          }}
           ref={contentRef}
+          $expanded={isExpanded}
         >
           {children}
         </SectionContent>
