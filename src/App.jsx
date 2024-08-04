@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import NavMenu from "./components/header/NavMenu";
 import styled from "styled-components";
 import "./globalStyle.css";
@@ -67,6 +67,13 @@ const App = () => {
   const [isMobile, setIsMobile] = useState(
     window.innerWidth <= parseBreakpoint(breakpoint)
   );
+  const containerRef = useRef(null);
+
+  const [expandedSection, setExpandedSection] = useState(null);
+
+  const handleSectionExpand = (id) => {
+    setExpandedSection((prev) => (prev === id ? null : id));
+  };
 
   useEffect(() => {
     const handleResize = () =>
@@ -76,23 +83,24 @@ const App = () => {
   }, []);
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Header>
         <Heading></Heading>
         <ProfilePicture />
-        <NavMenu></NavMenu>
+        <NavMenu containerRef={containerRef} />
         {!isMobile && <Contact />}
       </Header>
 
       <Main>
-        <Section title="Introduction">
+        <Section id="introduction" title="Introduction">
           <Introduction />
         </Section>
 
-        <Section title="Skills">
+        <Section id="skills" title="Skills">
           <Skills />
         </Section>
-        <Section title="Projects">
+
+        <Section id="projects" title="Projects">
           <Projects />
         </Section>
 

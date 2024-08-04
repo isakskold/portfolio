@@ -25,7 +25,9 @@
   --orange: rgb(255, 153, 0); /* Orange */
   --turquoise: rgba(0, 191, 166, 0.45); /* Turquoise */
   --turquoise-bright: rgba(0, 191, 166, 0.7); /* Turquoise */
+  --turquoise-bright-focus: rgba(0, 191, 166, 1);
   --turquoise-bright-bgc: rgba(0, 191, 166, 0.03); /* Turquoise */
+  --turquoise-dark: rgba(0, 0, 0, 0.18);
   --turquoise-semi-bright: rgba(0, 191, 166, 0.55); /* Turquoise */
   --tomato-red: rgba(255, 99, 71, 1); /* Tomato red */
 
@@ -33,6 +35,7 @@
   --box-shadow: 0 0 40px var(--turquoise);
   --box-shadow-hover: 0 0 50px var(--turquoise-bright);
   --box-shadow-expanded: 0 0 50px var(--turquoise-semi-bright);
+  --box-shadow-focus: 0 0 20px var(--turquoise-bright-focus);
 }
 
 body {

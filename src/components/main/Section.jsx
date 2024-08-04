@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
+import useSectionStore from "../../store/useSectionStore";
 
 // Utility function to convert pixels to rem
 const pxToRem = (px) => `${px / 16}rem`;
@@ -12,20 +13,16 @@ const SectionContainer = styled.section`
   border: 1px solid rgba(250, 250, 250, 0.1);
   box-shadow: ${(props) =>
     props.$expanded ? "var(--box-shadow-expanded)" : "var(--box-shadow)"};
-
   border-radius: ${(props) => (props.$expanded ? "30px" : "15px")};
-
   padding: var(--spacing-small);
   overflow: hidden;
   &:not(:last-child) {
     margin-bottom: var(--spacing-medium);
   }
-
   cursor: pointer;
   &:hover {
     box-shadow: var(--box-shadow-hover);
   }
-
   transition: border-radius 0.6s ease-in-out, box-shadow 0.2s ease-in-out;
 `;
 
@@ -80,10 +77,11 @@ const SectionContent = styled.div`
   pointer-events: ${(props) => (props.$expanded ? "auto" : "none")};
 `;
 
-const Section = ({ title, children, allowOverflow }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const Section = ({ id, title, children }) => {
   const [maxHeight, setMaxHeight] = useState(0);
   const contentRef = useRef(null);
+  const isExpanded = useSectionStore((state) => state.expandedSections[id]);
+  const toggleSection = useSectionStore((state) => state.toggleSection);
 
   useEffect(() => {
     if (isExpanded && contentRef.current) {
@@ -104,12 +102,12 @@ const Section = ({ title, children, allowOverflow }) => {
     };
   }, [isExpanded]);
 
-  const toggleExpand = () => {
-    setIsExpanded((prev) => !prev);
-  };
-
   return (
-    <SectionContainer onClick={toggleExpand} $expanded={isExpanded}>
+    <SectionContainer
+      id={id}
+      onClick={() => toggleSection(id)}
+      $expanded={isExpanded}
+    >
       <SectionTitle $expanded={isExpanded}>
         {title} <span>▼</span>
       </SectionTitle>
