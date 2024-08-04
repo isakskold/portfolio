@@ -52,11 +52,31 @@ const SkillItem = styled.div`
   }
 `;
 
+const rotateText = keyframes`
+    0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }`;
+
+const SkillText = styled.p`
+  position: absolute;
+  font-size: var(--font-size-large);
+  font-weight: bold;
+  text-align: center;
+  animation: ${rotateText} 20s linear infinite;
+
+  @media (max-width: 600px) {
+    display: none; /* Hide the text on small screens */
+  }
+`;
+
 const SkillsCircle = ({ skills }) => {
   const containerRef = useRef(null);
   const skillRefs = useRef([]);
-
   const [dimensions, setDimensions] = useState({ radius: 0, center: 0 });
+  const [currentSkillIndex, setCurrentSkillIndex] = useState(7);
 
   const updateDimensions = () => {
     if (containerRef.current) {
@@ -111,8 +131,22 @@ const SkillsCircle = ({ skills }) => {
     }
   }, [skills, dimensions]);
 
+  useEffect(() => {
+    const intervalDuration = 10000 / skills.length; // Calculate the interval duration
+    const interval = setInterval(() => {
+      setCurrentSkillIndex((prevIndex) =>
+        prevIndex === 0 ? skills.length - 1 : prevIndex - 1
+      );
+    }, intervalDuration);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [skills.length]);
+
   return (
     <CircleContainer ref={containerRef}>
+      <SkillText>{skills[currentSkillIndex].name}</SkillText>
       {skills.map((skill, index) => (
         <SkillItem
           key={index}
@@ -120,7 +154,11 @@ const SkillsCircle = ({ skills }) => {
           $index={index}
           $totalItems={skills.length}
         >
-          <Logo src={skill.src} name={skill.name} />
+          <Logo
+            src={skill.src}
+            name={skill.name}
+            focus={index === currentSkillIndex}
+          />
         </SkillItem>
       ))}
     </CircleContainer>

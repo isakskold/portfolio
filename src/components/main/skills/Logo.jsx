@@ -14,26 +14,32 @@ const LogoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px; // Adjust as needed
-  height: 50px; // Adjust as needed
+  width: 60px; // Adjust as needed
+  height: 60px; // Adjust as needed
   border-radius: 50%;
-  box-shadow: 0 0 8px 20px rgba(0, 0, 0, 0.2); /* Centered shadow */
+  background-color: var(--turquoise-dark);
+
+  box-shadow: ${(props) =>
+    props.$focus
+      ? "var(--box-shadow-focus)"
+      : "0 0 8px 10px rgba(0, 0, 0, 0.2)"};
 
   animation: ${rotateItem} 20s linear infinite;
 
   @media (max-width: 600px) {
     animation: none;
+    box-shadow: 0 0 8px 20px rgba(0, 0, 0, 0.2);
   }
 `;
 
 const LogoImage = styled.img`
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 60%;
+  max-height: 60%;
 `;
 
-const Logo = ({ src, name }) => {
+const Logo = ({ src, name, focus }) => {
   return (
-    <LogoWrapper title={name}>
+    <LogoWrapper title={name} $focus={focus}>
       <LogoImage src={src} alt={name} />
     </LogoWrapper>
   );
