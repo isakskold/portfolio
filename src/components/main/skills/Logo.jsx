@@ -1,6 +1,14 @@
 // Logo.jsx
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const rotateItem = keyframes`
+    0% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }`;
 
 const LogoWrapper = styled.div`
   display: flex;
@@ -9,9 +17,13 @@ const LogoWrapper = styled.div`
   width: 50px; // Adjust as needed
   height: 50px; // Adjust as needed
   border-radius: 50%;
-  overflow: hidden;
-  background-color: #fff; // Optional, to enhance visibility
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Optional, for visual depth
+  box-shadow: 0 0 8px 20px rgba(0, 0, 0, 0.2); /* Centered shadow */
+
+  animation: ${rotateItem} 20s linear infinite;
+
+  @media (max-width: 600px) {
+    animation: none;
+  }
 `;
 
 const LogoImage = styled.img`

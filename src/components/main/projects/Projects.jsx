@@ -27,7 +27,7 @@ const projects = [
     link: "https://github.com/Linuszackrisson/movie-db-react",
     description:
       "Group project made in school. Users can search for movies, view details and add movies to watchlist and favorite list. This project makes requests to the omDB api to fetch data about movies. \n\nIn this project I was mainly focusing on the javascript in react, while the other group members created the design with css.",
-    technologies: ["React", "Redux", "Javascript", "Css"],
+    technologies: ["React", "Axios", "Javascript", "Css", "Git"],
   },
   {
     title: "Online Coffee Shop",
@@ -43,7 +43,7 @@ const projects = [
     link: "https://github.com/isakskold/errorr404-backend-individual",
     description:
       "Individual school project based on a group project. This project only covers the backend. Users can create accounts and place orders. Admins can access more endpoints than guests and customer accounts. Use endpoints in the documentation to make CRUD operations to simulate user and admin actions.",
-    technologies: ["node.js", "express", "neDB", "JavaScript"],
+    technologies: ["Express", "NeDB", "JavaScript", "Git"],
   },
   // Add more projects as needed
 ];
