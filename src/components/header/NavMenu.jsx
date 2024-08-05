@@ -1,25 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import useSectionStore from "../../store/useSectionStore";
-
-// Utility function to perform smooth scrolling
-const smoothScroll = (target, duration = 600) => {
-  const start = window.scrollY;
-  const end = target;
-  const startTime = performance.now();
-
-  const scroll = (currentTime) => {
-    const timeElapsed = currentTime - startTime;
-    const progress = Math.min(timeElapsed / duration, 1);
-    window.scrollTo(0, start + (end - start) * progress);
-
-    if (progress < 1) {
-      requestAnimationFrame(scroll);
-    }
-  };
-
-  requestAnimationFrame(scroll);
-};
+import RotateSpan from "../utils/RotateSpan";
 
 const NavList = styled.ul`
   list-style: none;
@@ -28,19 +9,33 @@ const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-right: 10rem;
 `;
 
-const NavItem = styled.li`
-  cursor: pointer;
+const NavLink = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   margin: 0.5rem 0;
   padding: 0.5rem 1rem;
-  transition: background-color 0.3s;
+
+  @media (max-width: 1200px) {
+    width: 50%;
+  }
+
+  @media (max-width: 600px) {
+    min-width: 10rem;
+  }
+`;
+
+const NavItem = styled.span`
+  cursor: pointer;
+  padding: var(--spacing-xs);
 `;
 
 const NavMenu = ({ containerRef }) => {
-  const { expandedSections, toggleSection } = useSectionStore();
-
-  const handleScrollToSection = (id, behavior = "smooth") => {
+  const handleScrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section && containerRef.current) {
       const spacingMediumRem = getComputedStyle(
@@ -53,39 +48,33 @@ const NavMenu = ({ containerRef }) => {
       const sectionTop =
         section.getBoundingClientRect().top + window.scrollY - spacingMediumPx;
 
-      if (behavior === "smooth") {
-        smoothScroll(sectionTop, 600); // Custom smooth scroll
-      } else {
-        window.scrollTo({
-          top: sectionTop,
-          behavior: "auto", // Adjust without animation
-        });
-      }
-    }
-  };
-
-  const handleNavItemClick = (id) => {
-    // Start the initial smooth scroll
-    handleScrollToSection(id, "smooth");
-
-    // Expand the section if it is not already expanded
-    if (!expandedSections[id]) {
-      toggleSection(id);
-
-      // Adjust the scroll position after the expansion transition completes
-      setTimeout(() => {
-        handleScrollToSection(id, "auto"); // Adjust scroll without animation
-      }, 600); // Wait for the expansion transition to finish
+      window.scrollTo({
+        top: sectionTop,
+        behavior: "smooth",
+      });
     }
   };
 
   return (
     <NavList>
-      <NavItem onClick={() => handleNavItemClick("introduction")}>
-        Introduction
-      </NavItem>
-      <NavItem onClick={() => handleNavItemClick("skills")}>Skills</NavItem>
-      <NavItem onClick={() => handleNavItemClick("projects")}>Projects</NavItem>
+      <NavLink>
+        <NavItem onClick={() => handleScrollToSection("introduction")}>
+          Introduction
+        </NavItem>
+        <RotateSpan id="introduction" />
+      </NavLink>
+      <NavLink>
+        <NavItem onClick={() => handleScrollToSection("skills")}>
+          Skills
+        </NavItem>
+        <RotateSpan id="skills" />
+      </NavLink>
+      <NavLink>
+        <NavItem onClick={() => handleScrollToSection("projects")}>
+          Projects
+        </NavItem>
+        <RotateSpan id="projects" />
+      </NavLink>
     </NavList>
   );
 };

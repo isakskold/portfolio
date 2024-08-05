@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import useSectionStore from "../../store/useSectionStore";
+import RotateSpan from "../utils/RotateSpan";
 
 // Utility function to convert pixels to rem
 const pxToRem = (px) => `${px / 16}rem`;
@@ -33,13 +34,6 @@ const SectionTitle = styled.h2`
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  span {
-    display: inline-block;
-    transition: transform 0.6s;
-    transform: ${(props) =>
-      props.$expanded ? "rotate(180deg)" : "rotate(0deg)"};
-  }
 `;
 
 const SectionContentWrapper = styled.div`
@@ -109,7 +103,7 @@ const Section = ({ id, title, children }) => {
       $expanded={isExpanded}
     >
       <SectionTitle $expanded={isExpanded}>
-        {title} <span>▼</span>
+        {title} <RotateSpan id={id} />
       </SectionTitle>
       <SectionContentWrapper $expanded={isExpanded}>
         <SectionContent

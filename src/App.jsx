@@ -28,6 +28,10 @@ const Container = styled.div`
   @media (max-width: ${breakpoint}) {
     padding: 0 12%;
   }
+
+  @media (max-width: 600px) {
+    padding: 0 7.5%;
+  }
 `;
 
 const Header = styled.header`
@@ -63,16 +67,35 @@ const Main = styled.main`
   }
 `;
 
+const Footer = styled.footer`
+  display: none;
+  @media (max-width: ${breakpoint}) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    cursor: pointer;
+    font-size: 1.2rem;
+  }
+`;
+
 const App = () => {
   const [isMobile, setIsMobile] = useState(
     window.innerWidth <= parseBreakpoint(breakpoint)
   );
   const containerRef = useRef(null);
 
-  const [expandedSection, setExpandedSection] = useState(null);
-
-  const handleSectionExpand = (id) => {
-    setExpandedSection((prev) => (prev === id ? null : id));
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   useEffect(() => {
@@ -87,8 +110,8 @@ const App = () => {
       <Header>
         <Heading></Heading>
         <ProfilePicture />
-        <NavMenu containerRef={containerRef} />
-        {!isMobile && <Contact />}
+        {!isMobile && <NavMenu containerRef={containerRef} />}
+        <Contact />
       </Header>
 
       <Main>
@@ -103,9 +126,8 @@ const App = () => {
         <Section id="projects" title="Projects">
           <Projects />
         </Section>
-
-        {isMobile && <Contact />}
       </Main>
+      <Footer onClick={handleScrollToTop}>↑ Back to top</Footer>
     </Container>
   );
 };
