@@ -18,13 +18,14 @@ const LogoWrapper = styled.div`
   height: 60px; // Adjust as needed
   border-radius: 50%;
   background-color: var(--turquoise-dark);
+  transition: box-shadow 0.4s;
 
   box-shadow: ${(props) =>
     props.$focus
       ? "var(--box-shadow-focus)"
       : "0 0 8px 10px rgba(0, 0, 0, 0.2)"};
 
-  animation: ${rotateItem} 20s linear infinite;
+  animation: ${rotateItem} var(--rotate-speed) linear infinite;
 
   @media (max-width: 600px) {
     animation: none;

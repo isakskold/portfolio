@@ -25,7 +25,7 @@ const CircleContainer = styled.div`
   margin: var(--spacing-xs);
 
   /* Apply the rotation animation to the entire container */
-  animation: ${rotateContainer} 20s linear infinite;
+  animation: ${rotateContainer} var(--rotate-speed) linear infinite;
 
   @media (max-width: 600px) {
     aspect-ratio: auto; /* Disable aspect ratio for small screens */
@@ -65,7 +65,7 @@ const SkillText = styled.p`
   font-size: var(--font-size-large);
   font-weight: bold;
   text-align: center;
-  animation: ${rotateText} 20s linear infinite;
+  animation: ${rotateText} var(--rotate-speed) linear infinite;
 
   @media (max-width: 600px) {
     display: none; /* Hide the text on small screens */
@@ -132,7 +132,7 @@ const SkillsCircle = ({ skills }) => {
   }, [skills, dimensions]);
 
   useEffect(() => {
-    const intervalDuration = 10000 / skills.length; // Calculate the interval duration
+    const intervalDuration = 1000; //Value in ms for how often focus switches between skills
     const interval = setInterval(() => {
       setCurrentSkillIndex((prevIndex) =>
         prevIndex === 0 ? skills.length - 1 : prevIndex - 1

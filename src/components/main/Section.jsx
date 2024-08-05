@@ -103,7 +103,7 @@ const Section = ({ id, title, children }) => {
       $expanded={isExpanded}
     >
       <SectionTitle $expanded={isExpanded}>
-        {title} <RotateSpan id={id} />
+        {title} <RotateSpan id={id} context="Section" />
       </SectionTitle>
       <SectionContentWrapper $expanded={isExpanded}>
         <SectionContent

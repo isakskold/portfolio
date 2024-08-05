@@ -9,6 +9,9 @@ const Article = styled.article`
   background-color: var(--turquoise-bright-bgc);
   border-radius: var(--border-radius-large);
   padding: var(--spacing-small);
+  margin-bottom: var(
+    --spacing-xs
+  ); //Quick fix for bug where article border clips. Probably subpixel rendering issue
   border: 1px solid rgba(250, 250, 250, 0.1);
   width: 100%;
   box-sizing: border-box;

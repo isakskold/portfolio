@@ -36,6 +36,9 @@
   --box-shadow-hover: 0 0 50px var(--turquoise-bright);
   --box-shadow-expanded: 0 0 50px var(--turquoise-semi-bright);
   --box-shadow-focus: 0 0 20px var(--turquoise-bright-focus);
+
+  /* Rotate Speed (For skills circle rotation and childrens counter rotation)*/
+  --rotate-speed: 23s;
 }
 
 body {
