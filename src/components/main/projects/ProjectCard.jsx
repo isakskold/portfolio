@@ -95,7 +95,8 @@ const Thumbnails = styled.div`
   overflow-x: auto;
   white-space: nowrap;
   scroll-behavior: smooth;
-  position: relative; /* Ensures proper positioning of the pseudo-element */
+  position: relative;
+  height: 180px; /* fixed height to avoid resizing */
 
   :first-child {
     margin-left: var(--spacing-small);
@@ -112,18 +113,12 @@ const Thumbnails = styled.div`
         `
       : props.$browser === "chrome" || props.$browser === "safari"
       ? css`
-          //Simulating scrollbar increasing in size on
-          padding-bottom: 1rem;
-          &:hover {
-            padding-bottom: 0;
-          }
-
           &::-webkit-scrollbar {
-            height: 0.2rem; /* Hide scrollbar for WebKit browsers */
+            height: 0.2rem;
           }
 
           &:hover::-webkit-scrollbar {
-            height: 1.2rem; /* Show scrollbar on hover */
+            height: 1.2rem;
           }
 
           &::-webkit-scrollbar-track {
@@ -138,10 +133,6 @@ const Thumbnails = styled.div`
 
           &::-webkit-scrollbar-thumb:hover {
             background: #555;
-          }
-
-          &:hover::-webkit-scrollbar {
-            opacity: 1; /* Show scrollbar on hover */
           }
         `
       : ""}
