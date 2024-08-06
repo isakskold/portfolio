@@ -47,12 +47,12 @@ const ImageContainer = styled.div`
   z-index: 10; /* Ensure it is on top of other elements */
   animation: ${({ color }) => pulsate(color)} 2s infinite linear; /* Apply the animation with linear timing */
 
-  @media (max-height: 666px) {
+  @media (max-height: 540px) {
     display: none;
   }
 
   @media (max-height: 975px) {
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-small);
   }
 
   @media (max-width: 300px) {
