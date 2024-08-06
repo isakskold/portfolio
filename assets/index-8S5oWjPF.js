@@ -112,6 +112,14 @@ Error generating stack: `+i.message+`
     position: static;
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 1200px) {
+    position: static;
+  }
+
+  @media (max-height: 540px) {
+    margin-bottom: 2rem;
+  }
 `,Lh=()=>C.jsx(C.Fragment,{children:C.jsx(Nh,{children:"Isak Sköld"})}),La=e=>`${e/16}rem`,jh=R.section`
   display: flex;
   flex-direction: column;
@@ -538,6 +546,7 @@ In this project I was mainly focusing on the javascript in react, while the othe
   @media (max-width: ${Bn}) {
     position: static;
     width: 100%;
+    padding-top: 0;
   }
 
   @media (max-width: 600px) {
