@@ -1,0 +1,92 @@
+:root {
+  /* Font */
+  --font-size-base: 16px; /* Define a base font size (default: 16px) */
+  --font-size-small: 0.875rem; /* 14px */
+  --font-size-medium: 1rem; /* 16px */
+  --font-size-large: 1.25rem; /* 20px */
+  --text-color: rgba(226, 232, 240, 0.85);
+
+  /* Borders */
+  --border-radius-large: 8px;
+  --border-radius-small: 4px;
+
+  /* Spacings */
+  --spacing-unit: 1rem; /* Define a base spacing unit using rem */
+  --spacing-xs: 0.5rem;
+  --spacing-small: 1.5rem;
+  --spacing-medium: 3.5rem;
+  --spacing-large: 7rem;
+
+  /* Colors */
+  --primary-color: rgb(9, 17, 35); /* Background color */
+
+  /* Accent colors */
+  --bright-blue: rgba(30, 144, 255, 0.2); /* Bright blue */
+  --orange: rgb(255, 153, 0); /* Orange */
+  --turquoise: rgba(0, 191, 166, 0.45); /* Turquoise */
+  --turquoise-bright: rgba(0, 191, 166, 0.7); /* Turquoise */
+  --turquoise-bright-focus: rgba(0, 191, 166, 1);
+  --turquoise-bright-bgc: rgba(0, 191, 166, 0.03); /* Turquoise */
+  --turquoise-dark: rgba(0, 0, 0, 0.18);
+  --turquoise-semi-bright: rgba(0, 191, 166, 0.55); /* Turquoise */
+  --tomato-red: rgba(255, 99, 71, 1); /* Tomato red */
+
+  /* Box Shadow */
+  --box-shadow: 0 0 40px var(--turquoise);
+  --box-shadow-hover: 0 0 50px var(--turquoise-bright);
+  --box-shadow-expanded: 0 0 50px var(--turquoise-semi-bright);
+  --box-shadow-focus: 0 0 20px var(--turquoise-bright-focus);
+
+  /* Rotate Speed (For skills circle rotation and childrens counter rotation)*/
+  --rotate-speed: 23s;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-color);
+  margin: 0;
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Montserrat", sans-serif;
+}
+
+h2 {
+  font-size: 1.7rem;
+  margin: 0;
+}
+
+h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+p {
+  margin: 0;
+  line-height: var(--spacing-small);
+}
+
+p,
+li {
+  font-family: "Roboto", sans-serif;
+}
+a {
+  text-decoration: none; /* Remove underline */
+  color: var(--turquoise); /* Set the link color to a modern blue */
+  font-weight: 500; /* Slightly bold for emphasis */
+}
