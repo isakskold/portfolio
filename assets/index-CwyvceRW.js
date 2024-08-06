@@ -434,12 +434,12 @@ In this project I was mainly focusing on the javascript in react, while the othe
   z-index: 10; /* Ensure it is on top of other elements */
   animation: ${({color:e})=>Bm(e)} 2s infinite linear; /* Apply the animation with linear timing */
 
-  @media (max-height: 666px) {
+  @media (max-height: 540px) {
     display: none;
   }
 
   @media (max-height: 975px) {
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-small);
   }
 
   @media (max-width: 300px) {
