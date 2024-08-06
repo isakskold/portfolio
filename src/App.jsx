@@ -70,6 +70,7 @@ const Header = styled.header`
   @media (max-width: ${breakpoint}) {
     position: static;
     width: 100%;
+    padding-top: 0;
   }
 
   @media (max-width: 600px) {
