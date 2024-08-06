@@ -7,6 +7,11 @@ const Name = styled.h1`
   margin-top: 1.7rem;
   position: absolute;
   top: 1rem;
+
+  @media (max-width: 300px) {
+    position: static;
+    margin-bottom: 1rem;
+  }
 `;
 
 const Heading = () => {

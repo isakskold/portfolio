@@ -74,7 +74,9 @@ const SectionContent = styled.div`
 const Section = ({ id, title, children }) => {
   const [maxHeight, setMaxHeight] = useState(0);
   const contentRef = useRef(null);
-  const isExpanded = useSectionStore((state) => state.expandedSections[id]);
+  const isExpanded = useSectionStore(
+    (state) => state.expandedSections[id] || false
+  );
   const toggleSection = useSectionStore((state) => state.toggleSection);
 
   useEffect(() => {

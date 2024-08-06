@@ -37,17 +37,25 @@ const pulsate = (color) => keyframes`
 const ImageContainer = styled.div`
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
   height: 15rem; /* Set height and width to create a square */
-  width: 15rem; /* Set height and width to create a square */
+  width: fit-content; /* Set height and width to create a square */
   overflow: hidden; /* Ensure the pulsating box shadow is visible */
   border-radius: 15px; /* Make the container a circle */
   padding: 5px; /* Space for the gradient border */
-  margin-bottom: var(--spacing-medium); /* Center the container horizontally */
+  margin: var(--spacing-medium) 0;
   min-height: 75px; /* Set minimum height */
   min-width: 75px; /* Set minimum width */
   z-index: 10; /* Ensure it is on top of other elements */
   animation: ${({ color }) => pulsate(color)} 2s infinite linear; /* Apply the animation with linear timing */
 
-  @media (max-height: 220px) {
+  @media (max-height: 666px) {
+    display: none;
+  }
+
+  @media (max-height: 975px) {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 300px) {
     display: none;
   }
 
@@ -87,8 +95,8 @@ const ImageContainer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%; /* Ensure the image fills the entire container */
-  height: auto; /* Maintain aspect ratio */
+  width: auto; /* Ensure the image fills the entire container */
+  height: 100%; /* Maintain aspect ratio */
   object-fit: cover; /* Cover the entire container */
   border-radius: 15px; /* Ensure the image itself is also a circle */
   position: relative;

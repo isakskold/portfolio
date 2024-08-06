@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import NavMenu from "./components/header/NavMenu";
 import styled from "styled-components";
-import "./globalStyle.css";
+import useSectionStore from "./store/useSectionStore"; // Import your Zustand store
+import NavMenu from "./components/header/NavMenu";
 import Heading from "./components/header/Heading";
 import Section from "./components/main/Section";
 import Introduction from "./components/main/introduction/Introduction";
@@ -9,6 +9,7 @@ import Contact from "./components/header/contact/Contact";
 import Skills from "./components/main/skills/Skils";
 import Projects from "./components/main/projects/Projects";
 import ProfilePicture from "./components/header/ProfilePicture";
+import "./globalStyle.css";
 
 // Breakpoint for desktop vs mobile layout
 export const breakpoint = "1200px";
@@ -32,6 +33,27 @@ const Container = styled.div`
   @media (max-width: 600px) {
     padding: 0 7.5%;
   }
+
+  @media (max-width: 350px) {
+    h1 {
+      font-size: 2rem;
+    }
+    h2 {
+      font-size: 1.4rem;
+    }
+
+    h3 {
+      font-size: 1.1rem;
+    }
+
+    p {
+      font-size: 0.7rem;
+    }
+
+    span {
+      font-size: 1rem;
+    }
+  }
 `;
 
 const Header = styled.header`
@@ -40,16 +62,24 @@ const Header = styled.header`
   width: 50%;
   padding-bottom: 6rem;
   padding-top: 10rem;
-  /* border: 2px solid #ccc;
-  border-radius: var(--border-radius-small); */
   position: sticky;
-  top: 0; /* Stick to the top */
-  max-height: 100vh; /* Full viewport height */
+  top: 0;
+  max-height: 100vh;
   box-sizing: border-box;
-  /* Enable vertical scrolling */
+
   @media (max-width: ${breakpoint}) {
     position: static;
     width: 100%;
+  }
+
+  @media (max-width: 600px) {
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 300px) {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 `;
 
@@ -61,6 +91,7 @@ const Main = styled.main`
   padding-bottom: 6rem;
   padding-top: 10rem;
   box-sizing: border-box;
+
   @media (max-width: ${breakpoint}) {
     width: 100%;
     padding-top: 0;
@@ -69,6 +100,7 @@ const Main = styled.main`
 
 const Footer = styled.footer`
   display: none;
+
   @media (max-width: ${breakpoint}) {
     display: flex;
     align-items: center;
@@ -91,12 +123,19 @@ const App = () => {
   );
   const containerRef = useRef(null);
 
-  const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
+  // Get the initialization function from Zustand store
+  const initializeSections = useSectionStore(
+    (state) => state.initializeSections
+  );
+
+  useEffect(() => {
+    // Retrieve section IDs and initialize Zustand store
+    const sectionElements = document.querySelectorAll("main > section[id]");
+    const sectionIds = Array.from(sectionElements).map((section) => section.id);
+
+    // Initialize Zustand store with section IDs
+    initializeSections(sectionIds);
+  }, [initializeSections]);
 
   useEffect(() => {
     const handleResize = () =>
@@ -105,10 +144,17 @@ const App = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const handleScrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <Container ref={containerRef}>
       <Header>
-        <Heading></Heading>
+        <Heading />
         <ProfilePicture />
         {!isMobile && <NavMenu containerRef={containerRef} />}
         <Contact />

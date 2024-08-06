@@ -150,6 +150,10 @@ const Thumbnail = styled.img`
   margin-bottom: var(--spacing-small);
 `;
 
+const ProjectLink = styled.a`
+  margin-right: auto;
+`;
+
 const ProjectCard = ({ title, images, link, description, technologies }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [browser, setBrowser] = useState("other");
@@ -189,9 +193,9 @@ const ProjectCard = ({ title, images, link, description, technologies }) => {
       )}
 
       {link && (
-        <a href={link} target="_blank" rel="noopener noreferrer">
+        <ProjectLink href={link} target="_blank" rel="noopener noreferrer">
           View Project
-        </a>
+        </ProjectLink>
       )}
 
       {selectedImage && (
