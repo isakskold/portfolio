@@ -35,6 +35,9 @@ const pulsate = (color) => keyframes`
 `;
 
 const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
   height: 15rem; /* Set height and width to create a square */
   width: fit-content; /* Set height and width to create a square */
@@ -47,12 +50,12 @@ const ImageContainer = styled.div`
   z-index: 10; /* Ensure it is on top of other elements */
   animation: ${({ color }) => pulsate(color)} 2s infinite linear; /* Apply the animation with linear timing */
 
-  @media (max-height: 666px) {
+  @media (max-height: 540px) {
     display: none;
   }
 
   @media (max-height: 975px) {
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-small);
   }
 
   @media (max-width: 300px) {

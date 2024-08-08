@@ -12,6 +12,14 @@ const Name = styled.h1`
     position: static;
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 1200px) {
+    position: static;
+  }
+
+  @media (max-height: 540px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const Heading = () => {
