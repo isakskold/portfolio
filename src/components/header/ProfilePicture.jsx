@@ -35,6 +35,9 @@ const pulsate = (color) => keyframes`
 `;
 
 const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
   height: 15rem; /* Set height and width to create a square */
   width: fit-content; /* Set height and width to create a square */
