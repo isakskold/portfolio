@@ -430,6 +430,9 @@ In this project I was mainly focusing on the javascript in react, while the othe
     box-shadow: 0 0 6px ${e}; /* Ensure it ends at 6px */
   }
 `,Um=R.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
   height: 15rem; /* Set height and width to create a square */
   width: fit-content; /* Set height and width to create a square */
