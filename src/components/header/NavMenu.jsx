@@ -13,6 +13,12 @@ const NavList = styled.ul`
   margin-right: 55%;
   box-sizing: border-box;
   max-width: 100%;
+
+  @media (max-height: 780px) {
+    position: sticky;
+    top: 0;
+    margin-bottom: 100px;
+  }
 `;
 
 const NavLink = styled.li`

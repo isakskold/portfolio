@@ -34,6 +34,7 @@ const CircleContainer = styled.div`
     align-items: flex-start;
     border-radius: 0;
     animation: none; /* Disable animation for small screens */
+    gap: var(--spacing-small);
   }
 `;
 
