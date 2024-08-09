@@ -70,6 +70,12 @@ Error generating stack: `+i.message+`
   margin-right: 55%;
   box-sizing: border-box;
   max-width: 100%;
+
+  @media (max-height: 780px) {
+    position: sticky;
+    top: 0;
+    margin-bottom: 100px;
+  }
 `,_h=R.li`
   display: flex;
   align-items: center;
@@ -183,6 +189,12 @@ Error generating stack: `+i.message+`
   @media (max-width: 300px) {
     margin: 0;
   }
+
+  @media (max-height: 780px) {
+    margin-top: 0;
+    position: sticky;
+    top: 230px;
+  }
 `,Mh=R.p`
   margin: 0; /* Remove default margin for better alignment */
 `,Fh=[{label:"Email",info:"isaksfrontend@gmail.com"},{label:"LinkedIn",info:"linkedin.com/in/isaksköld",url:"https://www.linkedin.com/in/isak-sk%C3%B6ld-3b7a0b28a/"},{label:"GitHub",info:"github.com/isakskold",url:"https://github.com/isakskold"}],Ah=()=>C.jsx(Oh,{children:Fh.map((e,t)=>C.jsxs(Mh,{children:[C.jsxs("strong",{children:[e.label,":"]})," ",e.url?C.jsx("a",{href:e.url,target:"_blank",rel:"noopener noreferrer",children:e.info}):e.info]},t))}),Bh=ki`
@@ -240,6 +252,7 @@ Error generating stack: `+i.message+`
     align-items: flex-start;
     border-radius: 0;
     animation: none; /* Disable animation for small screens */
+    gap: var(--spacing-small);
   }
 `,Gh=R.div`
   position: absolute;
@@ -434,20 +447,15 @@ In this project I was mainly focusing on the javascript in react, while the othe
   align-items: center;
   justify-content: center;
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
-  height: 15rem; /* Set height and width to create a square */
+  height: 240px; /* Set height and width to create a square */
   width: fit-content; /* Set height and width to create a square */
   overflow: hidden; /* Ensure the pulsating box shadow is visible */
   border-radius: 15px; /* Make the container a circle */
   padding: 5px; /* Space for the gradient border */
   margin: var(--spacing-medium) 0;
-  min-height: 75px; /* Set minimum height */
-  min-width: 75px; /* Set minimum width */
-  z-index: 10; /* Ensure it is on top of other elements */
+  min-height: 240px; /* Set minimum height */
+  min-width: 240px; /* Set minimum width */
   animation: ${({color:e})=>Bm(e)} 2s infinite linear; /* Apply the animation with linear timing */
-
-  @media (max-height: 540px) {
-    display: none;
-  }
 
   @media (max-height: 975px) {
     margin-bottom: var(--spacing-small);
@@ -492,11 +500,10 @@ In this project I was mainly focusing on the javascript in react, while the othe
   }
 `,Vm=R.img`
   width: auto; /* Ensure the image fills the entire container */
-  height: 100%; /* Maintain aspect ratio */
+  height: 240px; /* Maintain aspect ratio */
   object-fit: cover; /* Cover the entire container */
   border-radius: 15px; /* Ensure the image itself is also a circle */
   position: relative;
-  z-index: 1; /* Ensure the image is above the inner background */
 `,Wm=()=>{const[e,t]=O.useState(Po[0]);return O.useEffect(()=>{const n=setInterval(()=>{const r=Am(e);t(r)},2e3);return()=>clearInterval(n)},[e]),C.jsx(Um,{color:e,children:C.jsx(Vm,{src:Fm,alt:"Profile Picture"})})},Bn="1200px",Ra=e=>parseInt(e,10),Hm=R.div`
   display: flex;
   flex-wrap: wrap;
@@ -559,7 +566,12 @@ In this project I was mainly focusing on the javascript in react, while the othe
 
   @media (max-width: 300px) {
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 3rem;
+  }
+
+  @media (max-height: 780px) {
+    position: static;
+    max-height: 100%;
   }
 `,Gm=R.main`
   display: flex;
@@ -590,5 +602,6 @@ In this project I was mainly focusing on the javascript in react, while the othe
     color: white;
     cursor: pointer;
     font-size: 1.2rem;
+    z-index: 1001;
   }
 `,Ym=()=>{const[e,t]=O.useState(window.innerWidth<=Ra(Bn)),n=O.useRef(null),r=An(i=>i.initializeSections);O.useEffect(()=>{const i=document.querySelectorAll("main > section[id]"),l=Array.from(i).map(u=>u.id);r(l)},[r]),O.useEffect(()=>{const i=()=>t(window.innerWidth<=Ra(Bn));return window.addEventListener("resize",i),()=>window.removeEventListener("resize",i)},[]);const o=()=>{window.scrollTo({top:0,behavior:"smooth"})};return C.jsxs(Hm,{ref:n,children:[C.jsxs(Qm,{children:[C.jsx(Lh,{}),C.jsx(Wm,{}),!e&&C.jsx($h,{containerRef:n}),C.jsx(Ah,{})]}),C.jsxs(Gm,{children:[C.jsx(rl,{id:"introduction",title:"Introduction",children:C.jsx(Dh,{})}),C.jsx(rl,{id:"skills",title:"Skills",children:C.jsx(sm,{})}),C.jsx(rl,{id:"projects",title:"Projects",children:C.jsx(Mm,{})})]}),C.jsx(Km,{onClick:o,children:"↑ Back to top"})]})};ol.createRoot(document.getElementById("root")).render(C.jsx(Zt.StrictMode,{children:C.jsx(Ym,{})}));
