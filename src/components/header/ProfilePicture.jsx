@@ -39,20 +39,15 @@ const ImageContainer = styled.div`
   align-items: center;
   justify-content: center;
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
-  height: 15rem; /* Set height and width to create a square */
+  height: 240px; /* Set height and width to create a square */
   width: fit-content; /* Set height and width to create a square */
   overflow: hidden; /* Ensure the pulsating box shadow is visible */
   border-radius: 15px; /* Make the container a circle */
   padding: 5px; /* Space for the gradient border */
   margin: var(--spacing-medium) 0;
-  min-height: 75px; /* Set minimum height */
-  min-width: 75px; /* Set minimum width */
-  z-index: 10; /* Ensure it is on top of other elements */
+  min-height: 240px; /* Set minimum height */
+  min-width: 240px; /* Set minimum width */
   animation: ${({ color }) => pulsate(color)} 2s infinite linear; /* Apply the animation with linear timing */
-
-  @media (max-height: 540px) {
-    display: none;
-  }
 
   @media (max-height: 975px) {
     margin-bottom: var(--spacing-small);
@@ -99,11 +94,10 @@ const ImageContainer = styled.div`
 
 const Image = styled.img`
   width: auto; /* Ensure the image fills the entire container */
-  height: 100%; /* Maintain aspect ratio */
+  height: 240px; /* Maintain aspect ratio */
   object-fit: cover; /* Cover the entire container */
   border-radius: 15px; /* Ensure the image itself is also a circle */
   position: relative;
-  z-index: 1; /* Ensure the image is above the inner background */
 `;
 
 const ProfilePicture = () => {

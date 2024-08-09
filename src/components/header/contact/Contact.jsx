@@ -7,6 +7,12 @@ const Wrapper = styled.div`
   @media (max-width: 300px) {
     margin: 0;
   }
+
+  @media (max-height: 780px) {
+    margin-top: 0;
+    position: sticky;
+    top: 230px;
+  }
 `;
 
 const ContactOption = styled.p`

@@ -80,7 +80,12 @@ const Header = styled.header`
 
   @media (max-width: 300px) {
     padding-top: 0;
-    padding-bottom: 0;
+    padding-bottom: 3rem;
+  }
+
+  @media (max-height: 780px) {
+    position: static;
+    max-height: 100%;
   }
 `;
 
@@ -115,6 +120,7 @@ const Footer = styled.footer`
     color: white;
     cursor: pointer;
     font-size: 1.2rem;
+    z-index: 1001;
   }
 `;
 
