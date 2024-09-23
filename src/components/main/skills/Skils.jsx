@@ -12,11 +12,13 @@ import ExpressLogo from "../../../logos/express-color.svg";
 import StyledComponentsLogo from "../../../logos/styledcomponents-color.svg";
 import AxiosLogo from "../../../logos/axios-color.svg";
 import ZustandLogo from "../../../logos/zustandLogo.svg";
+import awsLogo from "../../../logos/awsLogo.svg";
 
 const skills = [
   { src: Html5Logo, name: "HTML" },
   { src: Css3Logo, name: "CSS" },
   { src: JavascriptLogo, name: "JavaScript" },
+  { src: awsLogo, name: "AWS" },
   { src: ReactLogo, name: "React" },
   { src: NodeJsLogo, name: "Node.js" },
   { src: GitLogo, name: "Git" },
