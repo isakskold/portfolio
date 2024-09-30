@@ -31,7 +31,7 @@ const projects = [
     images: [forum1, forum2, forum3],
     link: "https://github.com/isakskold/shui",
     description:
-      "Started off as a simple message board for a school project. Working on the message board fueled my interest to dive deeper into working with the serverless framework in AWS. \n\nMy goal is to be able to host and run fully functional forum dedicated to swedish web developers where they can discuss and share code. I am currently working on implementing user registration with proper authentication and relative robust security. \n\nAt this point in time I do not have much tho show regarding the frontend since I am focusing on building a solid infrastructure for the backend using AWS.",
+      "Started off as a simple message board for a school project. Working on the message board fueled my interest in diving deeper into using the Serverless Framework on AWS. \n\nMy goal is to host and run a fully functional forum dedicated to Swedish web developers, where they can discuss and share code. I am currently working on implementing user registration with proper authentication and relatively robust security. \n\nAt this point, I do not have much to show on the frontend, as I am focusing on building a solid infrastructure for the backend using AWS.",
     technologies: [
       "AWS",
       "Serverless",
