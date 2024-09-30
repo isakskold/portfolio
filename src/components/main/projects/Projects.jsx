@@ -19,8 +19,32 @@ import coffeeShop5 from "../../../images/airbeanBackendImages/getProducts.png";
 import coffeeShop6 from "../../../images/airbeanBackendImages/login.png";
 import coffeeShop7 from "../../../images/airbeanBackendImages/orders.png";
 
+// Import images for web dev forum
+import forum1 from "../../../images/forumImages/frontendMessages.png";
+import forum2 from "../../../images/forumImages/reactAndMapStructure.png";
+import forum3 from "../../../images/forumImages/ymlAndMapStructure.png";
+
 // Define projects array
 const projects = [
+  {
+    title: "Web development forum (work in progress)",
+    images: [forum1, forum2, forum3],
+    link: "https://github.com/isakskold/shui",
+    description:
+      "Started off as a simple message board for a school project. Working on the message board fueled my interest to dive deeper into working with the serverless framework in AWS. \n\nMy goal is to be able to host and run fully functional forum dedicated to swedish web developers where they can discuss and share code. I am currently working on implementing user registration with proper authentication and relative robust security. \n\nAt this point in time I do not have much tho show regarding the frontend since I am focusing on building a solid infrastructure for the backend using AWS.",
+    technologies: [
+      "AWS",
+      "Serverless",
+      "DynamoDB",
+      "Api Gateway",
+      "Lambda",
+      "JWT",
+      "React",
+      "Axios",
+      "Styled components",
+      "Git",
+    ],
+  },
   {
     title: "Movie Database",
     images: [movieDB1, movieDB2, movieDB3, movieDB4, movieDB5, movieDB6],
@@ -45,7 +69,6 @@ const projects = [
       "Individual school project based on a group project. This project only covers the backend. Users can create accounts and place orders. Admins can access more endpoints than guests and customer accounts. Use endpoints in the documentation to make CRUD operations to simulate user and admin actions.",
     technologies: ["Express", "NeDB", "JavaScript", "Git"],
   },
-  // Add more projects as needed
 ];
 
 const ProjectsWrapper = styled.div`
